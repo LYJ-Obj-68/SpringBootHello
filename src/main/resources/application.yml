@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=utf-8&useSSL=false
+  jpa:
+    hibernate:
+      #create：每次重启都会创建数据库
+      #update: 数据库中有此表时，不用创建，没有时创建
+      ddl-auto: update
+      #true：控制台打印sql语句
+    show-sql: true

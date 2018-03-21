@@ -1,0 +1,48 @@
+一、SpringBoot配置管理:
+    SpringBoot框架支持两种配置方式:(大多数情况下，SpringBoot都是采用的是第二种.yml文件形式)
+        1, .properties文件形式，在创建项目时候在resources目录下生成的application.properties；格式：
+            #Mysql属性配置文件,Spring-boot系统配置
+            spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+            spring.datasource.url=jdbc:mysql://localhost:3306/spring-boot?useUnicode=true&characterEncoding=utf-8&useSSL=false
+            spring.datasource.username=root
+            spring.datasource.password=root
+
+            #配置自动建表：updata:没有表新建，有表更新操作,控制台显示建表语句
+            spring.jpa.hibernate.ddl-auto=update
+            spring.jpa.show-sql=true
+
+        2, .yml文件形式，注意:使用eclipse时不支持.yml文件；格式：
+            spring:
+              datasource:
+                driver-class-name: com.mysql.jdbc.Driver
+                username: root
+                password: root
+                url: jdbc:mysql://127.0.0.1:3306/springboot?useUnicode=true&characterEncoding=utf-8&useSSL=false
+              jpa:
+                hibernate:
+                  ddl-auto: create
+                show-sql: true
+
+二、集成spring-data-jpa和配置mysql数据库
+    1, 配置SpringBoot环境:
+        用spring-data-jpa+hibernate作为持久化框架和SpringBoot整合，采用mysql数据库；
+        需要两个依赖:mysql数据库驱动依赖,spring-data-jpa依赖，
+        这里可以不用配置hibernate依赖，因加上spring-data-jpa依赖后jpa会根据自身的依赖关系加载相关依赖
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        注意:这两个依赖不需要加上版本号,在建项目的时候pom里面生成的父pom中指定了版本号
+    2, 配置连接数据库
+        将application.properties配置文件的后缀改为.yml
+
+三、创建关于数据库表的类（注意注解引入的包）
+四、创建一个接口类继承JpaRepository
+五、Controller类，里面可以直接引入继承JpaRepository的接口类
+六、启动服务访问
+
+
